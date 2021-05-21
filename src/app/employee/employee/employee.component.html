@@ -1,9 +1,9 @@
 <app-nav></app-nav>
 
 <div>
-  <div class="row">
-    <div class="col-md-12 col-sm-12 ml-2 mr-2">
-      <form (ngSubmit)="f.form.valid && createEmployee()" name="form" #f="ngForm" novalidate>
+  <div class="row mr-2">
+    <div class="col-md-12 col-sm-12 ml-2">
+      <form (ngSubmit)="f.form.valid && saveOrUpdate()" name="form" #f="ngForm" novalidate>
         <div class="form-row">
           <div class="col-md-4">
             <label for="empId">Employee ID<span style="color: red;">*</span></label>
@@ -14,7 +14,7 @@
             <label for="empName">Employee Name<span style="color: red;">*</span></label>
             <input type="text" class="form-control is-valid" id="empName" name="empName" placeholder="Insert Name" required
               [(ngModel)]="employeeModel.empName">
-          </div>
+          </div> 
           <div class="col-md-4">
             <label for="grade">Grade/Rank</label>
             <select class="form-control" [(ngModel)]="employeeModel.grade.id" (change)="changeGrade($event)" name="grade">
@@ -22,7 +22,7 @@
             </select>
           </div>
         </div>
-        <div class="form-row">
+        <div class="form-row mt-2">
           <div class="col-md-4">
             <label for="mobile">Mobile</label>
             <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Ensert Mobile"
@@ -39,11 +39,12 @@
     </div>
   </div>
   
-  <div class="row">
+  <div class="row mt-3 mr-2">
     <div class="col-md-12 col-sm-12 ml-2">
-      <table class="table table-bordered">
+      <table class="table table-bordered table-striped">
         <thead>
           <tr>
+            <th colspan="2" class="text-center">Action</th>
             <th>Employee ID</th>
             <th>Employee Name</th>
             <th>Grade</th>
@@ -53,6 +54,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let emp of employeeList; let i=index ">
+            <td class="text-center"><i class="fas fa-edit" (click)="editEmp(emp)"></i></td>
+            <td class="text-center"><i class="fas fa-trash-alt" (click)="deleteEmp(emp)"></i></td>
             <td>{{emp.empId}}</td>
             <td>{{emp.empName}}</td>
             <td>{{emp.grade.name}}</td>

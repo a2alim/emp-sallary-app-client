@@ -39,6 +39,35 @@ export class EmployeeComponent implements OnInit {
     );
   }
 
+  findEmpList() {
+    this.employeeService.findEmpList().subscribe(
+      res => {
+        if (res.success && res.items) {
+          this.employeeList = res.items;
+        }
+      },
+      err => {
+        console.log('grade list err', err);
+      }
+    );
+  }
+
+  changeGrade(event) {
+    this.employeeModel.grade.id = event.target.value;
+  }
+
+  editEmp(emp) {
+    this.employeeModel = emp;
+  }
+
+  saveOrUpdate(){
+    if(this.employeeModel.id){
+      this.updateEmployee();
+    }else{
+      this.createEmployee();
+    }
+  }
+
   createEmployee() {
     this.employeeService.createEmployee(this.employeeModel).subscribe(
       res => {
@@ -56,11 +85,15 @@ export class EmployeeComponent implements OnInit {
     );
   }
 
-  findEmpList() {
-    this.employeeService.findEmpList().subscribe(
+  updateEmployee() {
+    this.employeeService.updateEmployee(this.employeeModel).subscribe(
       res => {
-        if (res.success && res.items) {
-          this.employeeList = res.items;
+        if (res.success) {
+          this.toastr.success(res.message);
+          this.employeeModel = new EmployeeModel();
+          this.findEmpList();
+        } else {
+          this.toastr.warning(res.message);
         }
       },
       err => {
@@ -69,8 +102,23 @@ export class EmployeeComponent implements OnInit {
     );
   }
 
-  changeGrade(event){
-    this.employeeModel.grade.id = event.target.value;
+
+  deleteEmp(emp) {
+    console.log('emp', emp.id);
+    
+    this.employeeService.deleteEmployee(emp.id).subscribe(
+      res => {
+        if (res.success) {
+          this.toastr.success(res.message);
+          this.findEmpList();
+        } else {
+          this.toastr.warning(res.message);
+        }
+      },
+      err => {
+        console.log('grade list err', err);
+      }
+    );
   }
 
 }
