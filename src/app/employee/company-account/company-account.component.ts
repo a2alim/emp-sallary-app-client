@@ -130,7 +130,7 @@ export class CompanyAccountComponent implements OnInit {
     const initialState = {
       transactionList: this.transactionList
     }
-    this.bsModalRef = this._modalService.show(TranHistoryModalComponent, { class: 'modal-md', initialState, backdrop: 'static' });
+    this.bsModalRef = this._modalService.show( TranHistoryModalComponent, { class: 'modal-md', initialState, backdrop: 'static' });
     this.bsModalRef.content.onClose.subscribe(result => {
     });
   }
