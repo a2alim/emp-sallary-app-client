@@ -1,3 +1,5 @@
+import { GradeModel } from "./grade.model";
+
 export class EmployeeModel{
 
     id: number;
@@ -5,5 +7,6 @@ export class EmployeeModel{
 	empName: string;
 	address: string;
 	mobile: string;
+	grade: GradeModel = new GradeModel();
     
 }
