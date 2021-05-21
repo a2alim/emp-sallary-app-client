@@ -17,6 +17,8 @@ export class PaySalaryComponent implements OnInit {
   conpanyAccList: any[] = [];
   employeeAccList: any[] = [];
   transactionList: any[] = [];
+  transferAmm: number;
+  currentComBalance: number;
 
   bsModalRef: BsModalRef;
 
@@ -75,12 +77,21 @@ export class PaySalaryComponent implements OnInit {
   }
 
   currentBalance() {
+    this.currentComBalance = 0;
     if (this.transactionList && this.transactionList.length > 0) {
-      return this.transactionList.map(data1 => data1.crAmount).reduce((data2, data3) => { return data2 + data3 }, 0) - this.transactionList.map(data1 => data1.drAmount).reduce((data2, data3) => { return data2 + data3 }, 0);
+      this.currentComBalance = this.transactionList.map(data1 => data1.crAmount).reduce((data2, data3) => { return data2 + data3 }, 0) - this.transactionList.map(data1 => data1.drAmount).reduce((data2, data3) => { return data2 + data3 }, 0);
     }
-
-    return 0;
+    return this.currentComBalance;
   }
+
+  transferAmmount(getVal) {
+    // console.log(getVal.employee.grade.salary);
+    // console.log(this.transactionList.filter(data => data.empAccount && data.empAccount.id == getVal.id).map(data1 => data1.drAmount).reduce((data2, data3) => { return data2 + data3 }, 0));
+    // console.log('list ====== > ',this.transactionList.filter(data => data.empAccount && (data.empAccount.id == getVal.id)));
+    this.transferAmm = getVal.employee.grade.salary - this.transactionList.filter(data => data.empAccount && (data.empAccount.id == getVal.id)).map(data1 => data1.drAmount).reduce((data2, data3) => { return data2 + data3 }, 0);
+    return this.transferAmm;
+  }
+
 
   tranHistory() {
     const initialState = {
@@ -93,10 +104,17 @@ export class PaySalaryComponent implements OnInit {
 
   balanceTransfer(getVal: any) {
     const initialState = {
-      data: { ...getVal }
+      data: { ...getVal },
+      companyAcc: this.conpanyAccList[0],
+      transferAmm: this.transferAmm,
+      currentComBalance: this.currentComBalance
     }
     this.bsModalRef = this._modalService.show(TransferModalComponent, { class: 'modal-md', initialState, backdrop: 'static' });
     this.bsModalRef.content.onClose.subscribe(result => {
+      if (result) {
+        this.getEmpAccount();
+        this.companyAccList();
+      }
     });
   }
 

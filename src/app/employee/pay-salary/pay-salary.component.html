@@ -58,7 +58,9 @@
                     <th>Bank Name</th>
                     <th>Grade</th>
                     <th>Salary</th>
+                    <th>Transfer Amount</th>
                     <th>Action</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -68,7 +70,9 @@
                     <td>{{item?.bankName}}({{item?.branchName}})</td>
                     <td>{{item?.employee.grade?.name}}</td>
                     <td>{{item?.employee?.grade?.salary}}</td>
-                    <td><button class="btn btn-primary" type="button" (click)="balanceTransfer(item)">
+                    <td>{{transferAmmount(item)}}</td>
+                    <td><button class="btn btn-primary" type="button" (click)="balanceTransfer(item)"
+                            [disabled]="transferAmmount(item)==0">
                             Pay Ammount
                         </button>
                     </td>
