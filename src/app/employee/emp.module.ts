@@ -10,18 +10,28 @@ import { CompanyAccountComponent } from './company-account/company-account.compo
 import { PaySalaryComponent } from './pay-salary/pay-salary.component';
 import { SalarySheetComponent } from './salary-sheet/salary-sheet.component';
 import { SharedModule } from '../shared/shared.module';
+import { UpdateGradeComponent } from './grade/update-grade/update-grade.component';
+import { TranHistoryModalComponent } from './company-account/tran-history-modal/tran-history-modal.component';
 
 
 
 @NgModule({
-  declarations: [EmployeeComponent, GradeComponent, HomeComponent, NavComponent, EmpAccountComponent, CompanyAccountComponent, PaySalaryComponent, SalarySheetComponent],
+  declarations: [EmployeeComponent, GradeComponent, HomeComponent, NavComponent, EmpAccountComponent, CompanyAccountComponent, PaySalaryComponent, SalarySheetComponent, UpdateGradeComponent, TranHistoryModalComponent],
   imports: [
     EmpRoutingModule,
     SharedModule
   ],
-  exports:[
+  exports: [
     EmployeeComponent
+  ],
+
+  entryComponents: [
+    UpdateGradeComponent,
+    TranHistoryModalComponent
   ]
+
+
+
 })
 
 export class EmpModule { }

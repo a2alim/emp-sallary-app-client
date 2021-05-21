@@ -1,6 +1,7 @@
-export class GradeModel{
+export class GradeModel {
 
-    id: number;
+
+	id: number;
 	name: string;
 	maxPost: number;
 	basic: number;
