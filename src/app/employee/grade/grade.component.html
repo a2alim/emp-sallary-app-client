@@ -1,57 +1,79 @@
 <app-nav></app-nav>
 
-<ng-container *ngIf="gradeList.length==0">
-    <div class="pr-3 mb-3">
-        <table>
-            <tbody>
-                <tr>
-                    <th style="width: 128px;" class="text-right">Basic Salary: </th>
+<div class="row  m-2">
+    <div class="col-md-12">
+        <ng-container *ngIf="gradeList.length==0">
 
-                    <td style="width: 128px;">
-                        <input type="number" class="form-control" placeholder="" [(ngModel)]="gradeModel.basic"
-                            name="basic">
-                    </td>
+            <div class="offset-5 col-md-2">
+                <label for="updBlance" class="balanceLabel">Basic Salary:</label>
+                <input type="number" class="form-control text-right" placeholder="" [(ngModel)]="gradeModel.basic"
+                    placeholder="Add Basic Salary" name="basic">
 
-                    <td style="width: 128px;">
-                        <button class="btn btn-primary" type="button" (click)="saveGrade()">
-                            Save
-                        </button>
-                    </td>
-
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</ng-container>
+                <button class="btn btn-primary updateBtn" type="button" (click)="saveGrade()">
+                    <i class="fas fa-save"></i>
+                    Add
+                </button>
+            </div>
 
 
-<Table class="table table-bordered">
-    <thead>
-        <tr>
-            <th colspan="2">Action</th>
-            <th>Grade/Rank Name</th>
-            <th>Maximum Post</th>
-            <th>Basic Salary</th>
-            <th>House Rent(20%)</th>
-            <th>Medical Allowance(15%)</th>
-            <th>Salary</th>
-        </tr>
-    </thead>
-    <tbody>
-        <ng-container *ngFor="let item of gradeList; let i = 'index'">
-            <tr>
-                <td (click)="updateGrade(item)" *ngIf="i==0"><i class="fas fa-edit"></i></td>
-                <td *ngIf="i!=0"></td>
-                <td><i class="fas fa-trash-alt"></i></td>
-                <td>{{item.name}}</td>
-                <td>{{item.maxPost}}</td>
-                <td>{{item.basic}}</td>
-                <td>{{item.houseRent}}</td>
-                <td>{{item.medical}}</td>
-                <td>{{item.salary}}</td>
-            </tr>
+            <div class="pr-3 mb-3">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th style="width: 128px;" class="text-right">Basic Salary: </th>
+                            <td style="width: 128px;">
+                                <input type="number" class="form-control" placeholder="" [(ngModel)]="gradeModel.basic"
+                                    name="basic">
+                            </td>
+        
+                            <td style="width: 128px;">
+                                <button class="btn btn-primary" type="button" (click)="saveGrade()">
+                                    Save
+                                </button>
+                            </td>
+        
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </ng-container>
+    </div>
+</div>
 
-    </tbody>
+<div class="row  m-2">
+    <div class="col-md-12">
+        <Table class="table table-bordered table-striped">
+            <thead>
+                <tr class="text-center">
+                    <th>Action</th>
+                    <th>Grade/Rank Name</th>
+                    <th>Maximum Post</th>
+                    <th>Basic Salary</th>
+                    <th>House Rent(20%)</th>
+                    <th>Medical Allowance(15%)</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let item of gradeList; let i = 'index'">
+                    <tr class="text-center">
+                        <td  (click)="updateGrade(item)" *ngIf="i==0"><i class="fas fa-edit"></i></td>
+                        <td *ngIf="i!=0"></td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.maxPost}}</td>
+                        <td>{{item.basic}}</td>
+                        <td>{{item.houseRent}}</td>
+                        <td>{{item.medical}}</td>
+                        <td>{{item.salary}}</td>
+                    </tr>
+                </ng-container>
+        
+            </tbody>
+        
+        </Table>
+    </div>
+</div>
 
-</Table>
+
+
+
