@@ -2,8 +2,8 @@
 
 
 <div>
-    <div class="row">
-        <div class="col-md-12 col-sm-12 ml-2 mr-2">
+    <div class="row m-2">
+        <div class="col-md-12 col-sm-12">
             <ng-container *ngIf="conpanyAccList.length==0">
                 <form (ngSubmit)="f.form.valid && saveCompanyAcc()" name="form" #f="ngForm" novalidate>
                     <div class="form-row">
@@ -11,25 +11,25 @@
                         <div class="col-md-4">
                             <label for="accType">Account Type</label>
                             <select class="form-control" name="accType" [(ngModel)]="companyAccountModel.type">
-                                <option value="Savings" >Savings</option>
+                                <option value="Savings">Savings</option>
                                 <option value="Current">Current</option>
                             </select>
                         </div>
 
                         <div class="col-md-4">
                             <label for="AccountName">Account Name<span style="color: red;">*</span></label>
-                            <input type="text" class="form-control is-valid" id="AccountName" name="AccountName"
+                            <input type="text" class="form-control" id="AccountName" name="AccountName"
                                 placeholder="Account Name" required [(ngModel)]="companyAccountModel.accName">
                         </div>
 
                         <div class="col-md-4">
                             <label for="AccountNumber">Account Number *</label>
-                            <input type="text" class="form-control is-valid" id="AccountNumber" name="AccountNumber"
+                            <input type="text" class="form-control" id="AccountNumber" name="AccountNumber"
                                 placeholder="Account Number" required [(ngModel)]="companyAccountModel.accNumber">
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row mt-2">
 
                         <div class="col-md-4">
                             <label for="BankName">Bank Name</label>
@@ -50,39 +50,31 @@
                         </div>
 
                     </div>
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-success saveBtn" type="submit">
+                        <i class="fas fa-save"></i>
+                        Save
+                    </button>
                 </form>
             </ng-container>
 
             <ng-container *ngIf="conpanyAccList.length!=0">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th style="width: 128px;" class="text-right">Update Balance: </th>
+                <div class="offset-4 col-md-2">
+                    <label for="updBlance" class="balanceLabel">Update Balance:</label>
+                    <input type="number" class="form-control text-right" id="initBlance" name="initBlance"
+                        placeholder="Add Balance" [(ngModel)]="companyAccountModel.balance">
 
-                            <td style="width: 128px;">
-                                <input type="number" class="form-control" id="initBlance" name="initBlance"
-                                    placeholder="Initial Balance" [(ngModel)]="companyAccountModel.balance">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <button class="btn btn-primary" type="button" (click)="saveCompanyAcc()">
-                    Save
-                </button>
-
-                <button class="btn btn-primary" type="button" (click)="tranHistory()">
-                    History
-                </button>
+                    <button class="btn btn-primary updateBtn" type="button" (click)="saveCompanyAcc()">
+                        <i class="fas fa-save"></i>
+                        Update
+                    </button>
+                </div>
             </ng-container>
-
-
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12 ml-2">
-            <table class="table table-bordered">
+    <div class="row m-2">
+        <div class="col-md-12 col-sm-12">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Account Type</th>
@@ -90,16 +82,23 @@
                         <th>Account Number</th>
                         <th>Bank Name</th>
                         <th>Branch Name</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <ng-container *ngFor="let item of conpanyAccList;let i = 'index'">
                         <tr>
-                            <td>{{item.type}}</td>
-                            <td>{{item.accName}}</td>
-                            <td>{{item.accNumber}}</td>
-                            <td>{{item.bankName}}</td>
-                            <td>{{item.branchName}}</td>
+                            <td style="vertical-align: middle;">{{item.type}}</td>
+                            <td style="vertical-align: middle;">{{item.accName}}</td>
+                            <td style="vertical-align: middle;">{{item.accNumber}}</td>
+                            <td style="vertical-align: middle;">{{item.bankName}}</td>
+                            <td style="vertical-align: middle;">{{item.branchName}}</td>
+                            <td style="width: 110px;" class="text-center">
+                                <button class="btn btn-info hisotBtn" type="button" (click)="tranHistory()">
+                                    <i class="fas fa-info-circle"></i>
+                                    History
+                                </button>
+                            </td>
                         </tr>
                     </ng-container>
                 </tbody>

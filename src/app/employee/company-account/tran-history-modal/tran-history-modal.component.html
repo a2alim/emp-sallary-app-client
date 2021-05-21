@@ -7,30 +7,27 @@
   </div>
 
   <div class="modal-body">
-
     <div class="scrool_ber height_table_450 vital-table-modal">
-      <div *ngIf="transactionList==0">
+      <div *ngIf="transactionList.length==0">
         <h2>Transaction History Found</h2>
       </div>
 
-      <ng-container *ngIf="transactionList!=0">
-        <table class="table table-bordered vital-table-modal">
+      <ng-container *ngIf="transactionList.length!=0">
+        <table class="table table-bordered table-striped">
           <thead>
             <tr class="txtAlignCenter">
-              <th style="width: 250px;">Description</th>
-              <th style="width: 170px;"> Dr. Amount</th>
-              <th style="width: 170px;"> Cr. Amount</th>
+              <th>Description</th>
+              <th style="width: 80px;"> Dr. Amount</th>
+              <th style="width: 80px;"> Cr. Amount</th>
             </tr>
           </thead>
           <tbody>
 
             <tr *ngFor="let item of transactionList ; let i= 'index'">
-              <td style="text-align: left;">{{item.des}}</td>
-              <td style="text-align: left;">{{item.drAmount}}</td>
-              <td style="text-align: center;">{{item.crAmount}}</td>
-
+              <td>{{item.des}}</td>
+              <td style="text-align: right;">{{item.drAmount}}</td>
+              <td style="text-align: right;">{{item.crAmount}}</td>
             </tr>
-
           </tbody>
         </table>
       </ng-container>
