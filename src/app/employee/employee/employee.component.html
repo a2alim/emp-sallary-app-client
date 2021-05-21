@@ -1,0 +1,35 @@
+<app-nav></app-nav>
+<h2>employee</h2>
+
+
+
+<form>
+    <div class="form-row">
+      <div class="col-md-4">
+        <label for="empId">Employee ID<span style="color: red;">*</span></label>
+        <input type="text" class="form-control is-valid" id="empId" placeholder="Insert ID" required>
+      </div>
+      <div class="col-md-4">
+        <label for="empName">Employee Name<span style="color: red;">*</span></label>
+        <input type="text" class="form-control is-valid" id="empName" placeholder="Insert Name" required
+        [(ngModel)]="employeeModel.empName">
+      </div>
+      <div class="col-md-4">
+        <label for="grade">Grade/Rank</label>
+        <select class="form-control">
+            <option *ngFor="let grade of gradeList">{{grade.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mt-5">
+        <label for="mobile">Mobile</label>
+        <input type="text" class="form-control" id="mobile" placeholder="Mobile">
+      </div>
+      <div class="col-md-8 mt-5">
+        <label for="address">Address</label>
+        <textarea class="form-control" name="address" id="address" cols="30" rows="3"></textarea>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
