@@ -60,10 +60,10 @@ export class EmployeeComponent implements OnInit {
     this.employeeModel = emp;
   }
 
-  saveOrUpdate(){
-    if(this.employeeModel.id){
+  saveOrUpdate() {
+    if (this.employeeModel.id) {
       this.updateEmployee();
-    }else{
+    } else {
       this.createEmployee();
     }
   }
@@ -105,7 +105,7 @@ export class EmployeeComponent implements OnInit {
 
   deleteEmp(emp) {
     console.log('emp', emp.id);
-    
+
     this.employeeService.deleteEmployee(emp.id).subscribe(
       res => {
         if (res.success) {
@@ -119,6 +119,10 @@ export class EmployeeComponent implements OnInit {
         console.log('grade list err', err);
       }
     );
+  }
+
+  onClickClear() {
+    this.employeeModel = new EmployeeModel();
   }
 
 }

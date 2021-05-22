@@ -8,11 +8,12 @@ import { EmpAccountComponent } from './emp-account/emp-account.component';
 import { CompanyAccountComponent } from './company-account/company-account.component';
 import { PaySalaryComponent } from './pay-salary/pay-salary.component';
 import { SalarySheetComponent } from './salary-sheet/salary-sheet.component';
+import { AccountBalanceComponent } from './account-balance/account-balance.component';
 
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
   },
   {
@@ -39,6 +40,12 @@ const routes: Routes = [
     path: 'salary-sheet',
     component: SalarySheetComponent,
   },
+  {
+    path: 'account-balance',
+    component: AccountBalanceComponent,
+  },
+
+  
 ]
 @NgModule({
   imports: [

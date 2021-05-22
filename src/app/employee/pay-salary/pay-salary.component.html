@@ -1,6 +1,8 @@
 <app-nav></app-nav>
-<div>
-    <!-- <div class="row mr-2">
+
+<div class="container-fluid">
+    <div class="pannelArea">
+        <!-- <div class="row mr-2">
         <div class="col-md-12 col-sm-12 ml-2">
             <form (ngSubmit)="f.form.valid && saveOrUpdate()" name="form" #f="ngForm" novalidate>
                 <div class="form-row">
@@ -46,67 +48,76 @@
                 <button class="btn btn-primary mt-2" type="submit">Save</button>
             </form>
         </div> -->
-</div>
 
-<div class="row mt-3 mr-2">
-    <div class="col-md-12 col-sm-12 ml-2">
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Employee</th>
-                    <th>Bank Account</th>
-                    <th>Bank Name</th>
-                    <th>Grade</th>
-                    <th>Salary</th>
-                    <th>Transfer Amount</th>
-                    <th>Action</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of employeeAccList; let i=index ">
-                    <td>{{item?.employee?.empName}} ({{item?.employee?.empId}})</td>
-                    <td>{{item?.accName}}({{item?.accNumber}})</td>
-                    <td>{{item?.bankName}}({{item?.branchName}})</td>
-                    <td>{{item?.employee.grade?.name}}</td>
-                    <td>{{item?.employee?.grade?.salary}}</td>
-                    <td>{{transferAmmount(item)}}</td>
-                    <td><button class="btn btn-primary" type="button" (click)="balanceTransfer(item)"
-                            [disabled]="transferAmmount(item)==0">
-                            Pay Ammount
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row mr-0">
+            <div class="col-md-12 col-sm-12 ml-2">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Bank Account</th>
+                            <th>Bank Name</th>
+                            <th>Grade</th>
+                            <th>Salary</th>
+                            <th>Transfer Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of employeeAccList; let i=index ">
+                            <td>{{item?.employee?.empName}} ({{item?.employee?.empId}})</td>
+                            <td>{{item?.accName}}({{item?.accNumber}})</td>
+                            <td>{{item?.bankName}}({{item?.branchName}})</td>
+                            <td>{{item?.employee.grade?.name}}</td>
+                            <td>{{item?.employee?.grade?.salary}}</td>
+                            <td>{{transferAmmount(item)}}</td>
+                            <td *ngIf="transferAmmount(item)==0" style="color: green;">Paid</td>
+                            <td *ngIf="(transferAmmount(item)!=item?.employee?.grade?.salary) && transferAmmount(item)!=0"
+                                style="color: rgb(215, 238, 13);">Partial Payment</td>
+                            <td *ngIf="transferAmmount(item)==item?.employee?.grade?.salary">Not Paid</td>
+
+                            <td style="width: 120px;">
+                                <button class="btn btn-primary btn-his" type="button" (click)="balanceTransfer(item)"
+                                    [disabled]="transferAmmount(item)==0">
+                                    Pay Ammount
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-3 mr-0">
+            <div class="col-md-12 col-sm-12 ml-2">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Acc Info.</th>
+                            <th>Total Dr. Ammount</th>
+                            <th>Total Cr. Ammount</th>
+                            <th>Current Balance</th>
+                            <th style="width: 70px;">
+                                <button class="btn btn-info btn-his" type="button" (click)="tranHistory()">
+                                    History
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of conpanyAccList; let i=index ">
+                            <td>{{item.accName}} || {{item.accNumber}}</td>
+                            <td>{{totalDrAmmount()}}</td>
+                            <td>{{totalCrAmmount()}}</td>
+                            <td>{{currentBalance()}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</div>
-
-<div class="row mt-3 mr-2">
-    <div class="col-md-12 col-sm-12 ml-2">
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Acc Info.</th>
-                    <th>Total Dr. Ammount</th>
-                    <th>Total Cr. Ammount</th>
-                    <th>Current Balance</th>
-                    <th>
-                        <button class="btn btn-primary" type="button" (click)="tranHistory()">
-                            History
-                        </button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of conpanyAccList; let i=index ">
-                    <td>{{item.accName}} || {{item.accNumber}}</td>
-                    <td>{{totalDrAmmount()}}</td>
-                    <td>{{totalCrAmmount()}}</td>
-                    <td>{{currentBalance()}}</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+    <app-footer></app-footer>

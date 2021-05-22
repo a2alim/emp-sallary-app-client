@@ -130,7 +130,7 @@ export class CompanyAccountComponent implements OnInit {
     const initialState = {
       transactionList: this.transactionList
     }
-    this.bsModalRef = this._modalService.show( TranHistoryModalComponent, { class: 'modal-md', initialState, backdrop: 'static' });
+    this.bsModalRef = this._modalService.show(TranHistoryModalComponent, { class: 'modal-md', initialState, backdrop: 'static' });
     this.bsModalRef.content.onClose.subscribe(result => {
     });
   }
@@ -141,6 +141,12 @@ export class CompanyAccountComponent implements OnInit {
         this.transactionList = res.items ? res.items : [];
       }
     );
+  }
+
+  currentBalance() {
+    if (this.transactionList && this.transactionList.length > 0) {
+      return this.transactionList.map(data1 => data1.crAmount).reduce((data2, data3) => { return data2 + data3 }, 0) - this.transactionList.map(data1 => data1.drAmount).reduce((data2, data3) => { return data2 + data3 }, 0);
+    }
   }
 
 }

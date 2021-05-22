@@ -13,11 +13,13 @@ import { SharedModule } from '../shared/shared.module';
 import { UpdateGradeComponent } from './grade/update-grade/update-grade.component';
 import { TranHistoryModalComponent } from './company-account/tran-history-modal/tran-history-modal.component';
 import { TransferModalComponent } from './pay-salary/transfer-modal/transfer-modal.component';
+import { AccountBalanceComponent } from './account-balance/account-balance.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
-  declarations: [EmployeeComponent, GradeComponent, HomeComponent, NavComponent, EmpAccountComponent, CompanyAccountComponent, PaySalaryComponent, SalarySheetComponent, UpdateGradeComponent, TranHistoryModalComponent, TransferModalComponent],
+  declarations: [EmployeeComponent, GradeComponent, HomeComponent, NavComponent, EmpAccountComponent, CompanyAccountComponent, PaySalaryComponent, SalarySheetComponent, UpdateGradeComponent, TranHistoryModalComponent, TransferModalComponent, AccountBalanceComponent, FooterComponent],
   imports: [
     EmpRoutingModule,
     SharedModule

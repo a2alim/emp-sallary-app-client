@@ -4005,3 +4005,20 @@ table.dataTable td.dataTables_empty, table.dataTable td.dt-center, table.dataTab
 
 
 
+/*===================================================================================== custom css ============================
+=====================================================*/
+.table thead th {
+    background: #436f6f;
+    color: #fff;padding: 4px !important;
+}
+.pannelArea {
+    width: 100%;
+    height: auto;
+    float: left;
+    background: #fff;
+    border: solid 1px #679cb1;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+
